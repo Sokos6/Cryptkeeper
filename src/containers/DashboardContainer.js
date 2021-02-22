@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import '../styles/Dashboard.css';
 // import api from '../data/api';
 import * as api from '../data/api';
 // import { getListings } from '../data/api';
+import ShowListings from '../components/ShowListings';
 
 class DashboardContainer extends Component {
 	constructor() {
@@ -32,6 +33,7 @@ class DashboardContainer extends Component {
 				<p className="DashboardContainer-intro">
 					Crytocurrency coin information will be listed below.
 				</p>
+				{/* <ShowListings /> */}
 			</div>
 		);
 	}
