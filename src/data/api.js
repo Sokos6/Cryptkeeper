@@ -9,10 +9,16 @@ const options = {
 	},
 };
 
-export function getData() {
-	axios.get(baseUrl, options).then((response) => {
-		console.log(response);
-	});
+export function getListings() {
+	console.log('0. calling getListings...');
+	return fetch(baseUrl, options)
+		.then(console.log('step 1, returning response.json()...'))
+		.then((response) => response.json());
 }
 
-console.log(getData());
+// export function getListings() {
+// 	axios
+// 		.get(baseUrl, options)
+// 		.then(console.log('step 1, returning response.json()...'))
+// 		.then((response) => response.json());
+// }
