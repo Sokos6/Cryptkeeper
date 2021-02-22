@@ -9,6 +9,20 @@ const options = {
 	},
 };
 
+export function getTicker() {
+	console.log('0. calling getTicker...');
+	return fetch(baseUrl, options)
+		.then(console.log('step 1, returning response.json()...'))
+		.then((response) => response.json());
+}
+
+export function getGlobal() {
+	console.log('0. calling getGlobal...');
+	return fetch(baseUrl, options)
+		.then(console.log('step 1, returning response.json()...'))
+		.then((response) => response.json());
+}
+
 export function getListings() {
 	console.log('0. calling getListings...');
 	return fetch(baseUrl, options)

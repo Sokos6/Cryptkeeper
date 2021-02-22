@@ -1,39 +1,88 @@
-import { Component } from 'react';
-import '../styles/Dashboard.css';
-// import api from '../data/api';
+import React, { Component } from 'react';
+
+import '../App.css';
+
 import * as api from '../data/api';
-// import { getListings } from '../data/api';
-import ShowListings from '../components/ShowListings';
+
+import Index from '../components/Index';
+import PieCharts from '../components/PieCharts';
+import ShowTicker from '../components/ShowTicker';
 
 class DashboardContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
 			listings: [],
+			ticker: [],
+			global: [],
 		};
 	}
 
+	// callAPIsContinously() {
+	//   console.log("Hello!!!");
+	//
+	//   setInterval( () => {
+	//     api.getTicker().then(response => this.setState({
+	//       ticker: Object.values(response) //converting object into array
+	//     }))}, 2000)
+	//
+	//   setInterval( () => {
+	//     api.getGlobal().then(response => this.setState({
+	//       global: Object.values(response) //converting object into array
+	//     }))}, 2000)
+	//
+	//     setInterval(function(){ console.log("Hello again!!!"); }, 1000)
+	//   }
+
 	componentDidMount() {
-		console.log('componentDidMount, calling api.getListings from DashboardContainer...');
-		api.getListings().then((response) =>
+		console.log('componentDidMount, making API calls...');
+
+		// this.callAPIsContinously()
+
+		api.getTicker().then((response) =>
 			this.setState({
-				listings: response,
+				ticker: Object.values(response), //converting object into array
 			}),
 		);
-		console.log('step 2, setting state of listings to response from promise...');
+
+		api.getGlobal().then((response) =>
+			this.setState({
+				global: Object.values(response), //converting object into array
+			}),
+		);
+		console.log('step 2, setting state with responses from API call promises...');
+	}
+
+	scrollToTop() {
+		console.log('scrollToTop called...');
+		window.scrollTo(0, 0);
+		window.history.pushState('object or string', 'Title', '/');
 	}
 
 	render() {
-		console.log('this.state.is: ', this.state);
+		console.log('this.state is: ', this.state);
 		return (
-			<div className="DashboardContainer">
+			<div className="center">
 				<header className="DashboardContainer-header">
 					<h1>Welcome to Crypto Dashboard</h1>
 				</header>
 				<p className="DashboardContainer-intro">
-					Crytocurrency coin information will be listed below.
+					Crytocurrency coininformation will be listed below.
 				</p>
-				{/* <ShowListings /> */}
+
+				<Index ticker={this.state.ticker[0]} global={this.state.global[1]} />
+
+				<PieCharts
+					scrollToTop={this.scrollToTop.bind(this)}
+					ticker={this.state.ticker[0]}
+					global={this.state.global[1]}
+				/>
+
+				<ShowTicker
+					scrollToTop={this.scrollToTop.bind(this)}
+					ticker={this.state.ticker[0]}
+					global={this.state.global[1]}
+				/>
 			</div>
 		);
 	}

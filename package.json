@@ -7,9 +7,13 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "react": "^17.0.1",
+    "react-chartkick": "^0.4.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -18,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://pro-api.coinmarketcap.com",
+  "proxy": "https://pro-api.coinarketcap.com",
   "eslintConfig": {
     "extends": [
       "react-app",
